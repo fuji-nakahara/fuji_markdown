@@ -4,6 +4,7 @@ require 'commonmarker'
 
 module FujiMarkdown
   def self.render(text)
-    CommonMarker.render_html(text)
+    doc = CommonMarker.render_doc(text)
+    doc.to_html(:HARDBREAKS)
   end
 end
