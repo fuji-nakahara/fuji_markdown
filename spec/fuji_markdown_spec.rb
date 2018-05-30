@@ -1,9 +1,9 @@
 RSpec.describe FujiMarkdown do
-  it "has a version number" do
-    expect(FujiMarkdown::VERSION).not_to be nil
-  end
+  subject { FujiMarkdown }
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  describe '.render' do
+    it 'converts fuji-markdown into HTML' do
+      expect(subject.render('Hello world.')).to eq "<p>Hello world.</p>\n"
+    end
   end
 end
