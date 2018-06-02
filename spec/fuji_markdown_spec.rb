@@ -1,6 +1,17 @@
 RSpec.describe FujiMarkdown do
   subject { FujiMarkdown }
 
+  describe '.parse' do
+    it 'converts fuji-markdown into AST' do
+      input = 'こんにちは{世界|せかい}'
+      output_node_types = %i[document paragraph text inline_html text inline_html text inline_html inline_html]
+
+      subject.parse(input).walk do |node|
+        expect(node.type).to be output_node_types.shift
+      end
+    end
+  end
+
   describe '.render' do
     it 'converts fuji-markdown into HTML' do
       input = <<~'MARKDOWN'
