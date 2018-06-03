@@ -1,6 +1,7 @@
 # FujiMarkdown
 
-Markdown processor for Japanese novels.
+FujiMarkdown is the dialect of Markdown supporting extensions for Japanese novels.  
+This gem is built on [CommonMarker](https://github.com/gjtorikian/commonmarker), and inspired by [Mato](https://github.com/bitjourney/mato).
 
 ## Installation
 

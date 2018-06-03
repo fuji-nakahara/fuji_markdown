@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['fujinakahara2032@gmail.com']
 
   spec.summary       = 'Markdown processor for Japanese novels'
-  spec.description   = 'Markdown processor for Japanese novels'
+  spec.description   = 'FujiMarkdown is the dialect of Markdown supporting extensions for Japanese novels.'
   spec.homepage      = 'https://github.com/fuji-nakahara/fuji_markdown'
   spec.license       = 'MIT'
 
