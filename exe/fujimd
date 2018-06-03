@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'fuji_markdown'
+
+OptionParser.new do |opts|
+  opts.banner = 'Usage: fujimd [options] [FILE]'
+  opts.on_tail('-v', '--version', 'Display the current version') do
+    puts FujiMarkdown::VERSION
+    exit
+  end
+  opts.on_tail('-h', '--help', 'Display this help message') do
+    puts opts
+    exit
+  end
+end.parse!
+
+puts FujiMarkdown.render(ARGF.read)
