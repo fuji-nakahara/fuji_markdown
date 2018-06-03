@@ -2,7 +2,7 @@ RSpec.describe FujiMarkdown do
   subject { FujiMarkdown }
 
   describe '.parse' do
-    it 'converts fuji-markdown into AST' do
+    it 'converts FujiMarkdown into AST' do
       input = 'こんにちは{世界|せかい}'
       output_node_types = %i[document paragraph text inline_html text inline_html text inline_html inline_html]
 
@@ -13,7 +13,7 @@ RSpec.describe FujiMarkdown do
   end
 
   describe '.render' do
-    it 'converts fuji-markdown into HTML' do
+    it 'converts FujiMarkdown into HTML' do
       input = <<~'MARKDOWN'
         # タイトル
 
