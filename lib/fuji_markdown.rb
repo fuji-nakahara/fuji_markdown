@@ -1,23 +1,45 @@
+require_relative 'fuji_markdown/processor'
 require_relative 'fuji_markdown/version'
 
+require_relative 'fuji_markdown/postprocessors/ruby'
 require_relative 'fuji_markdown/preprocessors/ruby'
+require_relative 'fuji_markdown/renderers/kakuyomu_renderer'
 
 require 'commonmarker'
 
 module FujiMarkdown
-  def self.parse(text)
-    preprocessors = [Preprocessors::Ruby.new]
-
-    processed_text = text.dup
-    preprocessors.each do |filter|
-      processed_text = filter.call(processed_text)
+  class << self
+    def parse(text, option = :HTML)
+      processor(option).parse(text)
     end
 
-    CommonMarker.render_doc(processed_text)
-  end
+    def render(text, option = :HTML)
+      processor(option).render(text)
+    end
 
-  def self.render(text)
-    doc = parse(text)
-    doc.to_html(:HARDBREAKS)
+    private
+
+    def processor(option)
+      args = processor_args(option)
+      Processor.new(args)
+    end
+
+    def processor_args(option)
+      case option
+      when :HTML
+        {
+          preprocessors: [Preprocessors::Ruby.new],
+          renderer: CommonMarker::HtmlRenderer.new(options: :HARDBREAKS),
+        }
+      when :KAKUYOMU
+        {
+          preprocessors: [Preprocessors::Ruby.new, Proc.new { |text| text.gsub!(/《/, '|《') }],
+          postprocessors: [Postprocessors::Ruby.new],
+          renderer: Renderers::KakuyomuRenderer.new,
+        }
+      else
+        raise ArgumentError, "Invalid option #{option}"
+      end
+    end
   end
 end

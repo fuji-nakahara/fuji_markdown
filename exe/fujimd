@@ -3,16 +3,24 @@
 require 'optparse'
 require 'fuji_markdown'
 
+option = :HTML
+
 OptionParser.new do |opts|
-  opts.banner = 'Usage: fujimd [options] [FILE]'
+  opts.banner = 'Usage: fujimd [--output <format>] <file>...'
+
+  opts.on('-o', '--output FORMAT', 'Specify output format: html or kakuyomu') do |fmt|
+    option = fmt.upcase.to_sym
+  end
+
   opts.on_tail('-v', '--version', 'Display the current version') do
     puts FujiMarkdown::VERSION
     exit
   end
+
   opts.on_tail('-h', '--help', 'Display this help message') do
     puts opts
     exit
   end
 end.parse!
 
-puts FujiMarkdown.render(ARGF.read)
+puts FujiMarkdown.render(ARGF.read, option)

@@ -11,7 +11,7 @@ module FujiMarkdown
           )x
 
       def call(text)
-        text.gsub(RUBY_PATTERN) do |match|
+        text.gsub!(RUBY_PATTERN) do |match|
           kanji, kana = match.slice(1...-1).split('|')
           "<ruby>#{kanji}<rt>#{kana}</rt></ruby>"
         end
