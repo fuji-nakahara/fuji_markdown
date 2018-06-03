@@ -20,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Just type `fujimd` and give your FujiMarkdown file:
+
+    $ fujimd your-fuji_markdown-file.md
 
 ## Development
 
