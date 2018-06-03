@@ -1,5 +1,5 @@
 module FujiMarkdown
-  module TextFilters
+  module Preprocessors
     class Ruby
       RUBY_PATTERN =
         %r(
