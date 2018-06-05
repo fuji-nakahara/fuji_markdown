@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fuji_markdown (0.1.0)
+    fuji_markdown (0.1.1)
       commonmarker (~> 0.17)
 
 GEM
