@@ -1,8 +1,11 @@
 module FujiMarkdown
   module Postprocessors
     class Ruby
-      def initialize
+      attr_reader :omit_start_symbol
+
+      def initialize(omit_start_symbol: false)
         @ruby = false
+        @omit_start_symbol = omit_start_symbol
       end
 
       def call(doc)
@@ -38,7 +41,7 @@ module FujiMarkdown
       end
 
       def convert_to_kakuyomu_ruby!(kanji_node, kana_node)
-        kanji_node.string_content = "|#{kanji_node.string_content}" if kanji_node.type == :text
+        kanji_node.string_content = "|#{kanji_node.string_content}" if kanji_node.type == :text && !(omit_start_symbol && kanji_node.string_content.match(/\A[一-龠々]+\z/))
         kana_node.string_content = "《#{kana_node.string_content}》" if kana_node.type == :text
       end
     end
