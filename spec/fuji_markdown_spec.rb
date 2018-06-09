@@ -19,7 +19,7 @@ RSpec.describe FujiMarkdown do
 
         ## 第一章
 
-        　これは段落である。
+        　これは{段落|だん|らく}である。
         「ここは会話だ」と{小鳥遊|たかなし}はいった。
 
         　これは二つ目の段落である。
@@ -35,7 +35,7 @@ RSpec.describe FujiMarkdown do
         expect(subject.render(input, :HTML)).to eq <<~'HTML'
           <h1>タイトル</h1>
           <h2>第一章</h2>
-          <p>　これは段落である。<br />
+          <p>　これは<ruby>段<rt>だん</rt>落<rt>らく</rt></ruby>である。<br />
           「ここは会話だ」と<ruby>小鳥遊<rt>たかなし</rt></ruby>はいった。</p>
           <p>　これは二つ目の段落である。</p>
           <h2>第二章</h2>
@@ -51,7 +51,7 @@ RSpec.describe FujiMarkdown do
 
           ## 第一章
   
-          　これは段落である。
+          　これは|段《だん》|落《らく》である。
           「ここは会話だ」と|小鳥遊《たかなし》はいった。
           　これは二つ目の段落である。
 

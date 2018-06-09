@@ -1,5 +1,5 @@
 RSpec.describe FujiMarkdown::Postprocessors::Ruby do
-  let(:doc) { FujiMarkdown.parse('冴えない{彼女|ヒロイン}は{紅蓮の炎|ヘルフレイム}に焼かれ果てた！') }
+  let(:doc) { FujiMarkdown.parse('冴えない{彼女|ヒロイン}は{紅蓮の炎|ヘルフレイム}を{学習|がく|しゅう}した！') }
 
   context 'without options' do
     subject { described_class.new }
@@ -13,7 +13,7 @@ RSpec.describe FujiMarkdown::Postprocessors::Ruby do
           results << node.string_content
         end
       end
-      expect(results).to eq '冴えない|彼女《ヒロイン》は|紅蓮の炎《ヘルフレイム》に焼かれ果てた！'
+      expect(results).to eq '冴えない|彼女《ヒロイン》は|紅蓮の炎《ヘルフレイム》を|学《がく》|習《しゅう》した！'
     end
   end
 
@@ -29,7 +29,7 @@ RSpec.describe FujiMarkdown::Postprocessors::Ruby do
           results << node.string_content
         end
       end
-      expect(results).to eq '冴えない彼女《ヒロイン》は|紅蓮の炎《ヘルフレイム》に焼かれ果てた！'
+      expect(results).to eq '冴えない彼女《ヒロイン》は|紅蓮の炎《ヘルフレイム》を学《がく》習《しゅう》した！'
     end
   end
 end
