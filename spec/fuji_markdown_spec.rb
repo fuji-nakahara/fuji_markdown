@@ -26,7 +26,7 @@ RSpec.describe FujiMarkdown do
 
         ## 第二章
 
-        　*強調*も使えるし、《二重山括弧》も使える。
+        　*強調*も使えるし、《二重山括弧》も使える。[リンク](https://github.com/fuji-nakahara/fuji_markdown)も張れる。
 
         ---
 
@@ -43,7 +43,7 @@ RSpec.describe FujiMarkdown do
           「ここは会話だ」と<ruby>小鳥遊<rt>たかなし</rt></ruby>はいった。</p>
           <p>　これは二つ目の段落である。</p>
           <h2>第二章</h2>
-          <p>　<em>強調</em>も使えるし、《二重山括弧》も使える。</p>
+          <p>　<em>強調</em>も使えるし、《二重山括弧》も使える。<a href="https://github.com/fuji-nakahara/fuji_markdown">リンク</a>も張れる。</p>
           <hr />
           <p>　場面転換した。</p>
         HTML
@@ -63,7 +63,7 @@ RSpec.describe FujiMarkdown do
 
           ## 第二章
 
-          　《《強調》》も使えるし、|《二重山括弧》も使える。
+          　《《強調》》も使えるし、|《二重山括弧》も使える。リンクも張れる。
 
           　場面転換した。
         TEXT

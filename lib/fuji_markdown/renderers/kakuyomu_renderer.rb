@@ -25,6 +25,10 @@ module FujiMarkdown
         out('《《', :children, '》》')
       end
 
+      def link(node)
+        out(:children)
+      end
+
       def softbreak(_)
         out("\n")
       end
