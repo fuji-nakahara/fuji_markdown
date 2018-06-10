@@ -17,6 +17,10 @@ module FujiMarkdown
         end
       end
 
+      def hrule(_)
+        out("\n")
+      end
+
       def emph(_)
         out('《《', :children, '》》')
       end

@@ -27,6 +27,10 @@ RSpec.describe FujiMarkdown do
         ## 第二章
 
         　*強調*も使えるし、《二重山括弧》も使える。
+
+        ---
+
+        　場面転換した。
       MARKDOWN
     end
 
@@ -40,6 +44,8 @@ RSpec.describe FujiMarkdown do
           <p>　これは二つ目の段落である。</p>
           <h2>第二章</h2>
           <p>　<em>強調</em>も使えるし、《二重山括弧》も使える。</p>
+          <hr />
+          <p>　場面転換した。</p>
         HTML
       end
     end
@@ -58,6 +64,8 @@ RSpec.describe FujiMarkdown do
           ## 第二章
 
           　《《強調》》も使えるし、|《二重山括弧》も使える。
+
+          　場面転換した。
         TEXT
       end
     end
