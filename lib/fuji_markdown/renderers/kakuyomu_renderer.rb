@@ -21,6 +21,14 @@ module FujiMarkdown
         out("\n")
       end
 
+      def code_block(node)
+        out("\n") if node.previous&.type&.==(:paragraph)
+        block do
+          out(escape_html(node.string_content))
+        end
+        out("\n")
+      end
+
       def emph(_)
         out('《《', :children, '》》')
       end
