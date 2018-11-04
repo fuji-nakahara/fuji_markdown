@@ -37,6 +37,12 @@ module FujiMarkdown
         out(:children)
       end
 
+      def code(node)
+        out('`')
+        out(escape_html(node.string_content))
+        out('`')
+      end
+
       def softbreak(_)
         out("\n")
       end
