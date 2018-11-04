@@ -29,7 +29,7 @@ module FujiMarkdown
       when :HTML
         {
           preprocessors: [Preprocessors::Ruby.new],
-          renderer: CommonMarker::HtmlRenderer.new(options: :HARDBREAKS),
+          renderer: CommonMarker::HtmlRenderer.new(options: [:HARDBREAKS, :UNSAFE]),
         }
       when :KAKUYOMU
         {

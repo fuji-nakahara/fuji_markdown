@@ -22,8 +22,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'commonmarker', '~> 0.17'
+
   spec.add_development_dependency 'bundler', '~> 1.16'
-  spec.add_development_dependency 'meowcop', '~> 1.16'
+  spec.add_development_dependency 'meowcop'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rake', '~> 12.3'
   spec.add_development_dependency 'rspec', '~> 3.7'
