@@ -12,9 +12,19 @@ module FujiMarkdown
       end
 
       def paragraph(node)
+        return out(:children) if node.parent.type == :blockquote
+
         block do
           out(:children)
         end
+      end
+
+      def blockquote(node)
+        out("\n") if node.previous&.type&.==(:paragraph)
+        block do
+          out('> ', :children)
+        end
+        out("\n")
       end
 
       def hrule(_)

@@ -31,6 +31,10 @@ RSpec.describe FujiMarkdown do
         ---
 
         　場面転換した。
+
+        > これは引用である。
+
+        　また地の文に戻った。
       MARKDOWN
     end
 
@@ -46,6 +50,10 @@ RSpec.describe FujiMarkdown do
           <p>　<em>強調</em>も使えるし、《二重山括弧》も使える。<a href="https://github.com/fuji-nakahara/fuji_markdown">リンク</a>も張れる。</p>
           <hr />
           <p>　場面転換した。</p>
+          <blockquote>
+          <p>これは引用である。</p>
+          </blockquote>
+          <p>　また地の文に戻った。</p>
         HTML
       end
     end
@@ -66,6 +74,10 @@ RSpec.describe FujiMarkdown do
           　《《強調》》も使えるし、|《二重山括弧》も使える。リンクも張れる。
 
           　場面転換した。
+
+          > これは引用である。
+
+          　また地の文に戻った。
         TEXT
       end
     end
