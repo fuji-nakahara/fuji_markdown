@@ -1,11 +1,11 @@
+require 'commonmarker'
+
 require_relative 'fuji_markdown/processor'
 require_relative 'fuji_markdown/version'
 
 require_relative 'fuji_markdown/postprocessors/ruby'
 require_relative 'fuji_markdown/preprocessors/ruby'
 require_relative 'fuji_markdown/renderers/kakuyomu_renderer'
-
-require 'commonmarker'
 
 module FujiMarkdown
   class << self
@@ -29,13 +29,13 @@ module FujiMarkdown
       when :HTML
         {
           preprocessors: [Preprocessors::Ruby.new],
-          renderer: CommonMarker::HtmlRenderer.new(options: [:HARDBREAKS, :UNSAFE]),
+          renderer:      CommonMarker::HtmlRenderer.new(options: [:HARDBREAKS, :UNSAFE]),
         }
       when :KAKUYOMU
         {
-          preprocessors: [Preprocessors::Ruby.new, Proc.new { |text| text.gsub!(/《/, '|《') }],
+          preprocessors:  [Preprocessors::Ruby.new, Proc.new { |text| text.gsub!(/《/, '|《') }],
           postprocessors: [Postprocessors::Ruby.new],
-          renderer: Renderers::KakuyomuRenderer.new,
+          renderer:       Renderers::KakuyomuRenderer.new,
         }
       else
         raise ArgumentError, "Invalid option #{option}"

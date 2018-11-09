@@ -1,18 +1,21 @@
 RSpec.describe FujiMarkdown do
-  subject { FujiMarkdown }
-
   describe '.parse' do
+    subject { described_class.parse(input) }
+
+    let(:input) { 'こんにちは{世界|せかい}' }
+
     it 'converts FujiMarkdown into AST' do
-      input = 'こんにちは{世界|せかい}'
       output_node_types = %i[document paragraph text inline_html text inline_html text inline_html inline_html]
 
-      subject.parse(input).walk do |node|
+      subject.walk do |node|
         expect(node.type).to be output_node_types.shift
       end
     end
   end
 
   describe '.render' do
+    subject { described_class.render(input, option) }
+
     let(:input) do
       <<~'MARKDOWN'
         # タイトル
@@ -39,8 +42,10 @@ RSpec.describe FujiMarkdown do
     end
 
     context 'with :HTML option' do
+      let(:option) { :HTML }
+
       it 'converts FujiMarkdown into HTML' do
-        expect(subject.render(input, :HTML)).to eq <<~'HTML'
+        expect(subject).to eq <<~'HTML'
           <h1>タイトル</h1>
           <h2>第一章</h2>
           <p>　これは<ruby>段<rt>だん</rt>落<rt>らく</rt></ruby>である。<br />
@@ -59,8 +64,10 @@ RSpec.describe FujiMarkdown do
     end
 
     context 'with :KAKUYOMU option' do
+      let(:option) { :KAKUYOMU }
+
       it 'converts FujiMarkdown into Kakuyomu text' do
-        expect(subject.render(input, :KAKUYOMU)).to eq <<~'TEXT'
+        expect(subject).to eq <<~'TEXT'
           # タイトル
 
           ## 第一章

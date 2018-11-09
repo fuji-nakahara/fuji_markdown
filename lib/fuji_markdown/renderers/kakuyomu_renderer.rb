@@ -1,5 +1,3 @@
-require 'commonmarker'
-
 module FujiMarkdown
   module Renderers
     class KakuyomuRenderer < CommonMarker::HtmlRenderer

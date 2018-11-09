@@ -1,14 +1,12 @@
-require 'commonmarker'
-
 module FujiMarkdown
   class Processor
     attr_reader :preprocessors, :parser, :postprocessors, :renderer
 
     def initialize(preprocessors: [], parser: CommonMarker, postprocessors: [], renderer: CommonMarker::HtmlRenderer.new)
-      @preprocessors = preprocessors
-      @parser = parser
+      @preprocessors  = preprocessors
+      @parser         = parser
       @postprocessors = postprocessors
-      @renderer = renderer
+      @renderer       = renderer
     end
 
     def parse(text)
