@@ -8,7 +8,7 @@ option = :HTML
 OptionParser.new do |opts|
   opts.banner = 'Usage: fujimd [--output <format>] <file>...'
 
-  opts.on('-o', '--output FORMAT', 'Specify output format: html or kakuyomu') do |fmt|
+  opts.on('-o', '--output FORMAT', 'Specify output format: kakuyomu, narou or html') do |fmt|
     option = fmt.upcase.to_sym
   end
 

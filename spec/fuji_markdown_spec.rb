@@ -88,5 +88,31 @@ RSpec.describe FujiMarkdown do
         TEXT
       end
     end
+
+    context 'with :NAROU option' do
+      let(:option) { :NAROU }
+
+      it 'converts FujiMarkdown into Narou text' do
+        expect(subject).to eq <<~'TEXT'
+          # タイトル
+
+          ## 第一章
+  
+          　これは|段《だん》|落《らく》である。
+          「ここは会話だ」と|小鳥遊《たかなし》はいった。
+          　これは二つ目の段落である。
+
+          ## 第二章
+
+          　|強《・》|調《・》も使えるし、《二重山括弧》も使える。リンクも張れる。
+
+          　場面転換した。
+
+          > これは引用である。
+
+          　また地の文に戻った。
+        TEXT
+      end
+    end
   end
 end

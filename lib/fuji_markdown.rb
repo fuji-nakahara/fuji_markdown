@@ -5,8 +5,10 @@ require_relative 'fuji_markdown/version'
 
 require_relative 'fuji_markdown/postprocessors/ruby'
 require_relative 'fuji_markdown/preprocessors/ruby'
+require_relative 'fuji_markdown/preprocessors/escape_narou'
 require_relative 'fuji_markdown/renderers/text_renderer'
 require_relative 'fuji_markdown/renderers/kakuyomu_renderer'
+require_relative 'fuji_markdown/renderers/narou_renderer'
 
 module FujiMarkdown
   class << self
@@ -37,6 +39,12 @@ module FujiMarkdown
           preprocessors:  [Preprocessors::Ruby.new, Proc.new { |text| text.gsub!(/《/, '|《') }],
           postprocessors: [Postprocessors::Ruby.new],
           renderer:       Renderers::KakuyomuRenderer.new,
+        }
+      when :NAROU
+        {
+          preprocessors:  [Preprocessors::Ruby.new, Preprocessors::EscapeNarou.new],
+          postprocessors: [Postprocessors::Ruby.new],
+          renderer:       Renderers::NarouRenderer.new,
         }
       else
         raise ArgumentError, "Invalid option #{option}"
