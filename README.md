@@ -21,9 +21,26 @@ Or install it yourself as:
 
 ## Usage
 
-Just type `fujimd` and give your FujiMarkdown file:
+```ruby
+require 'fuji_markdown'
 
-    $ fujimd your-fuji_markdown-file.md
+FujiMarkdown.render('山へ*柴刈り*に出かけたおじいさんは{紅蓮の炎|ヘルフレイム}に焼かれ果てた。')
+# => "<p>山へ<em>柴刈り</em>に出かけたおじいさんは<ruby>紅蓮の炎<rt>ヘルフレイム</rt></ruby>に焼かれ果てた。</p>\n"
+
+FujiMarkdown.render('山へ*柴刈り*に出かけたおじいさんは{紅蓮の炎|ヘルフレイム}に焼かれ果てた。', :KAKUYOMU)
+# => "山へ《《柴刈り》》に出かけたおじいさんは|紅蓮の炎《ヘルフレイム》に焼かれ果てた。\n"
+
+FujiMarkdown.render('山へ*柴刈り*に出かけたおじいさんは{紅蓮の炎|ヘルフレイム}に焼かれ果てた。', :NAROU)
+# => "山へ|柴《・》|刈《・》|り《・》に出かけたおじいさんは|紅蓮の炎《ヘルフレイム》に焼かれ果てた。\n"
+```
+
+See [spec](spec/fuji_markdown_spec.rb) for more detail.
+
+---
+
+In addition, you can use `fujimd` command from CLI:
+
+    $ fujimd your-FujiMarkdown-file.md [--output kakuyomu]
 
 ## Development
 
@@ -41,4 +58,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the FujiMarkdown project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/fuji_markdown/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the FujiMarkdown project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/fuji-nakahara/fuji_markdown/blob/master/CODE_OF_CONDUCT.md).
