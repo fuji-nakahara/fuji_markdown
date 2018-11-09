@@ -1,34 +1,6 @@
 module FujiMarkdown
   module Renderers
-    class KakuyomuRenderer < CommonMarker::HtmlRenderer
-      def header(node)
-        out("\n") if node.previous&.type&.==(:paragraph)
-        block do
-          out('#' * node.header_level, ' ', :children)
-        end
-        out("\n")
-      end
-
-      def paragraph(node)
-        return out(:children) if node.parent.type == :blockquote
-
-        block do
-          out(:children)
-        end
-      end
-
-      def blockquote(node)
-        out("\n") if node.previous&.type&.==(:paragraph)
-        block do
-          out('> ', :children)
-        end
-        out("\n")
-      end
-
-      def hrule(_)
-        out("\n")
-      end
-
+    class KakuyomuRenderer < TextRenderer
       def code_block(node)
         out("\n") if node.previous&.type&.==(:paragraph)
         block do
@@ -43,16 +15,6 @@ module FujiMarkdown
 
       def link(node)
         out(:children)
-      end
-
-      def code(node)
-        out('`')
-        out(escape_html(node.string_content))
-        out('`')
-      end
-
-      def softbreak(_)
-        out("\n")
       end
     end
   end

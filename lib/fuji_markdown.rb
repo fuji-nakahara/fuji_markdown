@@ -5,6 +5,7 @@ require_relative 'fuji_markdown/version'
 
 require_relative 'fuji_markdown/postprocessors/ruby'
 require_relative 'fuji_markdown/preprocessors/ruby'
+require_relative 'fuji_markdown/renderers/text_renderer'
 require_relative 'fuji_markdown/renderers/kakuyomu_renderer'
 
 module FujiMarkdown
