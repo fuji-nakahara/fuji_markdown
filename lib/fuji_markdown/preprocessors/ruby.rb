@@ -1,7 +1,7 @@
 module FujiMarkdown
   module Preprocessors
     class Ruby
-      RUBY_PATTERN = %r({(?<kanji>[^{}|]*)\|(?<kana>[^{}]*)})
+      RUBY_PATTERN = %r((?<!\\){(?<kanji>.*?)\|(?<kana>.*?)}).freeze
 
       def call(text)
         text.gsub!(RUBY_PATTERN) do |match|

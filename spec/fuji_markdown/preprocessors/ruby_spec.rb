@@ -40,4 +40,14 @@ RSpec.describe FujiMarkdown::Preprocessors::Ruby do
       expect(text).to eq '<ruby>漢<rt>かん</rt>字余<rt>じあまり</rt></ruby>'
     end
   end
+
+  context 'with "\{漢字|かんじ}"' do
+    let(:text) { '\{漢字|かんじ}' }
+
+    it 'should not convert the text' do
+      subject
+
+      expect(text).to eq '\{漢字|かんじ}'
+    end
+  end
 end
