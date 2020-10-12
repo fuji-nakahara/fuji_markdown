@@ -1,6 +1,20 @@
-inherit_gem:
-  meowcop:
-    - config/rubocop.yml
+require:
+  - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.6
+  NewCops: enable
+
+# rubocop
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+Style/Documentation:
+  Enabled: false
+
+# rubocop-rspec
+
+RSpec/ExampleLength:
+  Enabled: false
