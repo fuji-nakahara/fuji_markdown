@@ -3,8 +3,6 @@ module FujiMarkdown
     class Ruby
       KANJI_REGEXP = /\A[一-龠々]+\z/.freeze
 
-      attr_reader :omit_start_symbol
-
       def initialize(omit_start_symbol: false)
         @ruby              = false
         @omit_start_symbol = omit_start_symbol
@@ -18,7 +16,7 @@ module FujiMarkdown
 
       private
 
-      def process_ruby_node!(node)
+      def process_ruby_node!(node) # rubocop:disable Metrics/MethodLength
         case node.string_content
         when '<ruby>'
           @ruby = true
@@ -37,14 +35,14 @@ module FujiMarkdown
       end
 
       def convert_to_kakuyomu_ruby!(kanji_node, kana_node)
-        if kanji_node.type == :text && !(omit_start_symbol && start_symbol_omittable?(kanji_node))
+        if kanji_node.type == :text && !(@omit_start_symbol && start_symbol_omittable?(kanji_node))
           kanji_node.string_content = "|#{kanji_node.string_content}"
         end
         kana_node.string_content = "《#{kana_node.string_content}》" if kana_node.type == :text
       end
 
       def start_symbol_omittable?(kanji_node)
-        kanji_node.string_content.match(KANJI_REGEXP) && !kanji_node.previous.string_content[-1].match(KANJI_REGEXP)
+        kanji_node.string_content.match?(KANJI_REGEXP) && !kanji_node.previous.string_content[-1].match?(KANJI_REGEXP)
       end
     end
   end

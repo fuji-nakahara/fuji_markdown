@@ -1,33 +1,21 @@
 RSpec.describe FujiMarkdown::Preprocessors::EscapeNarou do
-  subject { described_class.new.call(text) }
+  subject(:escape_narou) { described_class.new.call(text) }
 
   context 'with "漢字（かんじ）"' do
     let(:text) { '漢字（かんじ）' }
 
-    it 'converts it into "漢字|（かんじ）"' do
-      subject
-
-      expect(text).to eq '漢字|（かんじ）'
-    end
+    it { is_expected.to eq '漢字|（かんじ）' }
   end
 
   context 'with "漢字(カンジ)"' do
     let(:text) { '漢字(カンジ)' }
 
-    it 'converts it into "漢字|(カンジ)"' do
-      subject
-
-      expect(text).to eq '漢字|(カンジ)'
-    end
+    it { is_expected.to eq '漢字|(カンジ)' }
   end
 
   context 'with "《かんジ》"' do
     let(:text) { '《かんジ》' }
 
-    it 'converts it into "|《かんジ》"' do
-      subject
-
-      expect(text).to eq '|《かんジ》'
-    end
+    it { is_expected.to eq '|《かんジ》' }
   end
 end

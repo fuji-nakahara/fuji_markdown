@@ -1,22 +1,19 @@
 RSpec.describe FujiMarkdown do
   describe '.parse' do
-    subject { described_class.parse(input) }
-
-    let(:input) { 'こんにちは{世界|せかい}' }
+    let(:text) { 'こんにちは{世界|せかい}' }
 
     it 'converts FujiMarkdown into AST' do
-      output_node_types = %i[document paragraph text inline_html text inline_html text inline_html inline_html]
+      doc = described_class.parse(text)
 
-      subject.walk do |node|
-        expect(node.type).to be output_node_types.shift
+      expected_node_types = %i[document paragraph text inline_html text inline_html text inline_html inline_html]
+      doc.walk do |node|
+        expect(node.type).to be expected_node_types.shift
       end
     end
   end
 
   describe '.render' do
-    subject { described_class.render(input, option) }
-
-    let(:input) do
+    let(:text) do
       <<~'MARKDOWN'
         # タイトル
 
@@ -41,11 +38,13 @@ RSpec.describe FujiMarkdown do
       MARKDOWN
     end
 
-    context 'with :HTML option' do
-      let(:option) { :HTML }
+    context 'with :HTML' do
+      let(:preset) { :HTML }
 
       it 'converts FujiMarkdown into HTML' do
-        expect(subject).to eq <<~'HTML'
+        result = described_class.render(text, preset)
+
+        expect(result).to eq <<~'HTML'
           <h1>タイトル</h1>
           <h2>第一章</h2>
           <p>　これは<ruby>段<rt>だん</rt>落<rt>らく</rt></ruby>である。<br />
@@ -63,11 +62,13 @@ RSpec.describe FujiMarkdown do
       end
     end
 
-    context 'with :KAKUYOMU option' do
-      let(:option) { :KAKUYOMU }
+    context 'with :KAKUYOMU' do
+      let(:preset) { :KAKUYOMU }
 
       it 'converts FujiMarkdown into Kakuyomu text' do
-        expect(subject).to eq <<~'TEXT'
+        result = described_class.render(text, preset)
+
+        expect(result).to eq <<~'TEXT'
           # タイトル
 
           ## 第一章
@@ -90,10 +91,12 @@ RSpec.describe FujiMarkdown do
     end
 
     context 'with :NAROU option' do
-      let(:option) { :NAROU }
+      let(:preset) { :NAROU }
 
       it 'converts FujiMarkdown into Narou text' do
-        expect(subject).to eq <<~'TEXT'
+        result = described_class.render(text, preset)
+
+        expect(result).to eq <<~'TEXT'
           # タイトル
 
           ## 第一章
