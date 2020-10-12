@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'fuji_markdown/error'
 require_relative 'fuji_markdown/processor'
 require_relative 'fuji_markdown/postprocessors/ruby'

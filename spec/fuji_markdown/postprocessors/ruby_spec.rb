@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe FujiMarkdown::Postprocessors::Ruby do
   let(:doc) { FujiMarkdown.parse('冴えない{彼女|ヒロイン}は{紅蓮の炎|ヘルフレイム}を{学習|がく|しゅう}した！') }
 

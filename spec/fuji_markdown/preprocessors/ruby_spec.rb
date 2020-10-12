@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe FujiMarkdown::Preprocessors::Ruby do
   subject(:ruby) { described_class.new.call(text) }
 

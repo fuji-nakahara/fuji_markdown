@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe FujiMarkdown::Preprocessors::EscapeNarou do
   subject(:escape_narou) { described_class.new.call(text) }
 

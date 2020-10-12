@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe FujiMarkdown do
   describe '.parse' do
     let(:text) { 'こんにちは{世界|せかい}' }

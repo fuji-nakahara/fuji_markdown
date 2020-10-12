@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FujiMarkdown
   module Postprocessors
     class Ruby
