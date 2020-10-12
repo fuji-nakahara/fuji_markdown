@@ -32,19 +32,19 @@ module FujiMarkdown
       when :HTML
         {
           preprocessors: [Preprocessors::Ruby.new],
-          renderer:      CommonMarker::HtmlRenderer.new(options: [:HARDBREAKS, :UNSAFE]),
+          renderer: CommonMarker::HtmlRenderer.new(options: %i[HARDBREAKS UNSAFE])
         }
       when :KAKUYOMU
         {
-          preprocessors:  [Preprocessors::Ruby.new, Proc.new { |text| text.gsub!(/《/, '|《') }],
+          preprocessors: [Preprocessors::Ruby.new, proc { |text| text.gsub!(/《/, '|《') }],
           postprocessors: [Postprocessors::Ruby.new],
-          renderer:       Renderers::KakuyomuRenderer.new,
+          renderer: Renderers::KakuyomuRenderer.new
         }
       when :NAROU
         {
-          preprocessors:  [Preprocessors::Ruby.new, Preprocessors::EscapeNarou.new],
+          preprocessors: [Preprocessors::Ruby.new, Preprocessors::EscapeNarou.new],
           postprocessors: [Postprocessors::Ruby.new],
-          renderer:       Renderers::NarouRenderer.new,
+          renderer: Renderers::NarouRenderer.new
         }
       else
         raise ArgumentError, "Invalid option #{option}"

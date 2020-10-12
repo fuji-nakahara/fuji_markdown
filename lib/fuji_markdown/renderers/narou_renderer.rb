@@ -11,14 +11,12 @@ module FujiMarkdown
 
       def emph(node)
         node.walk do |n|
-          if n.type == :text
-            n.string_content = n.string_content.chars.map { |char| "|#{char}《・》"}.join
-          end
+          n.string_content = n.string_content.chars.map { |char| "|#{char}《・》" }.join if n.type == :text
         end
         out(:children)
       end
 
-      def link(node)
+      def link(_node)
         out(:children)
       end
     end

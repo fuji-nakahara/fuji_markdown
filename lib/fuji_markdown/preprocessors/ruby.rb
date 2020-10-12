@@ -1,7 +1,7 @@
 module FujiMarkdown
   module Preprocessors
     class Ruby
-      RUBY_PATTERN = %r((?<!\\){(?<kanji>.*?)\|(?<kana>.*?)}).freeze
+      RUBY_PATTERN = /(?<!\\){(?<kanji>.*?)\|(?<kana>.*?)}/.freeze
 
       def call(text)
         text.gsub!(RUBY_PATTERN) do |str|
@@ -10,11 +10,11 @@ module FujiMarkdown
 
           pairs = []
           kanas.each_with_index do |kana, i|
-            if i == kanas.size - 1
-              pairs << [kanji[i..-1], kana]
-            else
-              pairs << [kanji[i], kana]
-            end
+            pairs << if i == kanas.size - 1
+                       [kanji[i..], kana]
+                     else
+                       [kanji[i], kana]
+                     end
           end
 
           "<ruby>#{pairs.map { |k, kana| "#{k}<rt>#{kana}</rt>" }.join}</ruby>"

@@ -11,9 +11,7 @@ RSpec.describe FujiMarkdown::Postprocessors::Ruby do
 
       results = ''
       doc.walk do |node|
-        if node.type == :text
-          results << node.string_content
-        end
+        results << node.string_content if node.type == :text
       end
       expect(results).to eq '冴えない|彼女《ヒロイン》は|紅蓮の炎《ヘルフレイム》を|学《がく》|習《しゅう》した！'
     end
@@ -27,9 +25,7 @@ RSpec.describe FujiMarkdown::Postprocessors::Ruby do
 
       results = ''
       doc.walk do |node|
-        if node.type == :text
-          results << node.string_content
-        end
+        results << node.string_content if node.type == :text
       end
       expect(results).to eq '冴えない彼女《ヒロイン》は|紅蓮の炎《ヘルフレイム》を学《がく》習《しゅう》した！'
     end

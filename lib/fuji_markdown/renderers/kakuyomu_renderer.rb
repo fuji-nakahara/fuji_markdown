@@ -13,7 +13,7 @@ module FujiMarkdown
         out('《《', :children, '》》')
       end
 
-      def link(node)
+      def link(_node)
         out(:children)
       end
     end
