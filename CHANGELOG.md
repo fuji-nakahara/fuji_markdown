@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Stop holding presets as constants.
+
 ## [0.4.0] - 2020-10-12
 
 ### Added
