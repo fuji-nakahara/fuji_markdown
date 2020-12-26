@@ -2,11 +2,9 @@ name: Ruby
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   test:
@@ -14,9 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby:
-          - 2.6
-          - 2.7
+        ruby: [ 2.6, 2.7, 3.0 ]
 
     steps:
       - uses: actions/checkout@v2

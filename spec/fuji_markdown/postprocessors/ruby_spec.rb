@@ -7,7 +7,7 @@ RSpec.describe FujiMarkdown::Postprocessors::Ruby do
     let(:options) { {} }
 
     it 'replaces `ruby` elements with Kakuyomu kihou' do
-      described_class.new(options).call(doc)
+      described_class.new(**options).call(doc)
 
       results = ''
       doc.walk do |node|
@@ -21,7 +21,7 @@ RSpec.describe FujiMarkdown::Postprocessors::Ruby do
     let(:options) { { omit_start_symbol: true } }
 
     it 'replaces `ruby` elements with Kakuyomu kihou and omits start symbol if possible' do
-      described_class.new(options).call(doc)
+      described_class.new(**options).call(doc)
 
       results = ''
       doc.walk do |node|
